@@ -110,4 +110,25 @@ class User{
             return false;
         }  
     }
+    function deleteUser(){
+        $strSQL = "DELETE FROM user_tb WHERE user_id = :user_id";
+
+        $stmt = $this->conn->prepare($strSQL);
+
+        //ตรวจสอบข้อมูล
+        $this->user_id = intval(htmlspecialchars(strip_tags($this->user_id)));
+        
+        //กำหนดข้อมูลให้ Parameter
+        $stmt->bindParam(":user_id", $this->user_id);
+        
+
+        //สั่งให้ SQL ทำงาน
+        if($stmt->execute()){
+            //สำเร็จ
+            return true;
+        }else{
+            //ไม่สำเร็จ
+            return false;
+        }  
+    }
 }
