@@ -14,10 +14,11 @@ $Roomtemp = new Roomtemp($connDB);
 $data = json_decode(file_get_contents("php://input"));
 
 //เอาข้อมูลที่ถูก Decode ไปเก็บในตัวแปร
-$Roomtemp->timesave = $data->timesave;
+$Roomtemp->strdatesave = $data->strdatesave;
+$Roomtemp->enddatesave = $data->enddatesave;
 
 //เรียกใช้ Function ตามวัตถุประสงค์ของ API ตัวนี้
-$stmt = $Roomtemp->getbytimeRoomtemp();
+$stmt = $Roomtemp->getbydatebetweenRoomtemp();
 
 //นับแถวเพื่อดูว่าได้ข้อมูลมาไหม 
 $numrow = $stmt->rowCount();
